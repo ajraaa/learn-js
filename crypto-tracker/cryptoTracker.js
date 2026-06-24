@@ -34,13 +34,12 @@ function addAsset(name, amount, price) {
 
         console.log("Before update: ", wallet[coinIndex]);
 
-        const totalCost = amount * price;
-
+        const totalCost = (coinAmount * coinPrice) + (amount * price);
         coinAmount += amount;
-        coinPrice += totalCost;
+        const avgPrice = totalCost / coinAmount;
 
-        wallet[coinIndex].amount == coinAmount;
-        wallet[coinIndex].buyPrice == coinPrice;
+        wallet[coinIndex].amount = coinAmount;
+        wallet[coinIndex].buyPrice = avgPrice;
 
         return wallet[coinIndex];
 
