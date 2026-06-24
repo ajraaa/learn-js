@@ -26,28 +26,41 @@ function checkProfitOrLoss(currentPrices) {
 
 function addAsset(name, amount, price) {
     // 1. check if asset exist or not
+
+
+
+
+
+    //    2.5 add the inputed amount to the old amount variable
+    //    2.6 add the total cost to the old price variable
+    //    2.7 add 
+    //    2.8 return the updated array
     const hasAsset = wallet.some(coin => coin.asset === name);
+    // 	2. if true:
     if (hasAsset) {
+        //    2.1 insert the targeted asset to a variable
         const coinIndex = wallet.findIndex(coin => coin.asset == name);
+        //    2.2 add the old amount to a variable
         let coinAmount = wallet[coinIndex].amount;
+        //    2.3 add the old price to a variable
         let coinPrice = wallet[coinIndex].buyPrice;
-
-        console.log("Before update: ", wallet[coinIndex]);
-
+        //    2.4 calculate the total cost to accumulate the new amount of asset (amount * price) and assign it to a new variable
         const totalCost = (coinAmount * coinPrice) + (amount * price);
+        //    2.5 add the new amount to the old amount variable
         coinAmount += amount;
+        //    2.6 calculate the avg price and assign to a variable
         const avgPrice = totalCost / coinAmount;
 
+        //    2.7 add the amount and avgprice to the object
         wallet[coinIndex].amount = coinAmount;
         wallet[coinIndex].buyPrice = avgPrice;
 
+        //    2.8 return the object
         return wallet[coinIndex];
 
     } else {
         return false;
     }
-    // 2. if true update the amount and price, then return the updated array
-    // 3. if false add a new object to the array, then return the array
 }
 
 // console.log('Total Investment: $' + calculateTotalInvestment());
