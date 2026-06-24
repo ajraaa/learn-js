@@ -30,7 +30,7 @@ function addAsset(name, amount, price) {
     // 	2. if true:
     if (hasAsset) {
         //    2.1 insert the targeted asset to a variable
-        const coinIndex = wallet.findIndex(coin => coin.asset == name);
+        const coinIndex = wallet.findIndex(coin => coin.asset === name);
         //    2.2 add the old amount to a variable
         let coinAmount = wallet[coinIndex].amount;
         //    2.3 add the old price to a variable
