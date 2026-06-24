@@ -24,11 +24,14 @@ function checkProfitOrLoss(currentPrices) {
     });
 }
 
-function addAsset(name, amount, price) {
+function addAsset(name, amount) {
     // 1. check if asset exist or not
     const hasAsset = wallet.some(coin => coin.asset === name);
     if (hasAsset) {
-        return true;
+        coinIndex = wallet.findIndex(coin => coin.asset == name);
+        console.log("Before update: ", wallet[coinIndex]);
+        wallet[coinIndex].amount += amount;
+        console.log("After update: ", wallet[coinIndex]);
     } else {
         return false;
     }
