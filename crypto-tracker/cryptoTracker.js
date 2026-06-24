@@ -24,14 +24,26 @@ function checkProfitOrLoss(currentPrices) {
     });
 }
 
-function addAsset(name, amount) {
+function addAsset(name, amount, price) {
     // 1. check if asset exist or not
     const hasAsset = wallet.some(coin => coin.asset === name);
     if (hasAsset) {
-        coinIndex = wallet.findIndex(coin => coin.asset == name);
+        const coinIndex = wallet.findIndex(coin => coin.asset == name);
+        let coinAmount = wallet[coinIndex].amount;
+        let coinPrice = wallet[coinIndex].buyPrice;
+
         console.log("Before update: ", wallet[coinIndex]);
-        wallet[coinIndex].amount += amount;
-        console.log("After update: ", wallet[coinIndex]);
+
+        const totalCost = amount * price;
+
+        coinAmount += amount;
+        coinPrice += totalCost;
+
+        wallet[coinIndex].amount == coinAmount;
+        wallet[coinIndex].buyPrice == coinPrice;
+
+        return wallet[coinIndex];
+
     } else {
         return false;
     }
@@ -44,4 +56,4 @@ function addAsset(name, amount) {
 // const currentPrices = { BTC: 60000, ETH: 2800 };
 // checkProfitOrLoss(currentPrices);
 
-console.log(addAsset("BTC", 2));
+console.log(addAsset("BTC", 2, 50000));
