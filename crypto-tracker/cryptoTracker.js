@@ -57,9 +57,9 @@ function addAsset(name, amount, price) {
     }
 }
 
-// console.log('Total Investment: $' + calculateTotalInvestment());
+console.log('Total Investment: $' + calculateTotalInvestment());
 
-// const currentPrices = { BTC: 60000, ETH: 2800 };
-// checkProfitOrLoss(currentPrices);
+const currentPrices = { BTC: 60000, ETH: 2800 };
+checkProfitOrLoss(currentPrices);
 
 console.log(addAsset("SOL", 2, 70));
