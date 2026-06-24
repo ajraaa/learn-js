@@ -44,4 +44,4 @@ function addAsset(name, amount) {
 // const currentPrices = { BTC: 60000, ETH: 2800 };
 // checkProfitOrLoss(currentPrices);
 
-console.log(addAsset("BTC", 2, 50000));
+console.log(addAsset("BTC", 2));
