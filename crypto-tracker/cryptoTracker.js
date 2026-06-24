@@ -26,15 +26,6 @@ function checkProfitOrLoss(currentPrices) {
 
 function addAsset(name, amount, price) {
     // 1. check if asset exist or not
-
-
-
-
-
-    //    2.5 add the inputed amount to the old amount variable
-    //    2.6 add the total cost to the old price variable
-    //    2.7 add 
-    //    2.8 return the updated array
     const hasAsset = wallet.some(coin => coin.asset === name);
     // 	2. if true:
     if (hasAsset) {
@@ -58,8 +49,11 @@ function addAsset(name, amount, price) {
         //    2.8 return the object
         return wallet[coinIndex];
 
+        // if false
     } else {
-        return false;
+        const newAsset = { asset: name, amount: amount, buyPrice: price };
+        wallet.push(newAsset);
+        return wallet;
     }
 }
 
@@ -68,4 +62,4 @@ function addAsset(name, amount, price) {
 // const currentPrices = { BTC: 60000, ETH: 2800 };
 // checkProfitOrLoss(currentPrices);
 
-console.log(addAsset("BTC", 2, 50000));
+console.log(addAsset("SOL", 2, 70));
