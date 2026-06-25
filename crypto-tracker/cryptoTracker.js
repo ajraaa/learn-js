@@ -4,12 +4,7 @@ const wallet = [
 ];
 
 function calculateTotalInvestment() {
-    let total = 0;
-    wallet.forEach((coin) => {
-        let x = coin.amount * coin.buyPrice;
-        total += x;
-    });
-    return total;
+    return wallet.reduce((total, coin) => total += coin.amount * coin.buyPrice, 0);
 }
 
 function checkProfitOrLoss(currentPrices) {
