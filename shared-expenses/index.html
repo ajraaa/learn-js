@@ -8,17 +8,29 @@
 </head>
 
 <body>
-    <form action="">
-        <input type="text" placeholder="Expense">
-        <input type="submit" id="submit-btn">
-    </form>
+    <input type="text" placeholder="Expense" id="expense-input">
+    <button onclick="addExpense()">Submit</button>
     <ul id="expense-list"></ul>
 
     <script>
         let expenses = [];
+        const expenseList = document.getElementById("expense-list");
+
+        function renderExpenses() {
+            expenseList.innerHTML = '';
+            expenses.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                expenseList.appendChild(li);
+            });
+        }
 
         // submit btn clicked then push the text from input to the array
-
+        function addExpense() {
+            const inputedExpense = document.getElementById("expense-input").value;
+            expenses.push(inputedExpense);
+            renderExpenses();
+        }
     </script>
 </body>
 
