@@ -11,7 +11,7 @@
     <form>
         <input type="text" placeholder="Expense Name" id="expense-name">
         <input type="number" placeholder="Amount" id="expense-amount">
-        <input type="submit" onclick="addExpense()">
+        <button type="button" onclick="addExpense()">Submit</button>
     </form>
 
     <ul id="expense-list"></ul>
@@ -24,7 +24,7 @@
             expenseList.innerHTML = '';
             expenses.forEach(item => {
                 const li = document.createElement('li');
-                li.textContent = item;
+                li.textContent = `${item.name} ${item.amount}`;
                 expenseList.appendChild(li);
             });
         }
@@ -38,7 +38,7 @@
                 name: expenseName,
                 amount: expenseAmount
             };
-            expenses.push(inputedExpense);
+            expenses.push(newExpense);
             renderExpenses();
         }
     </script>
