@@ -8,8 +8,12 @@
 </head>
 
 <body>
-    <input type="text" placeholder="Expense" id="expense-input">
-    <button onclick="addExpense()">Submit</button>
+    <form>
+        <input type="text" placeholder="Expense Name" id="expense-name">
+        <input type="number" placeholder="Amount" id="expense-amount">
+        <input type="submit" onclick="addExpense()">
+    </form>
+
     <ul id="expense-list"></ul>
 
     <script>
@@ -27,7 +31,13 @@
 
         // submit btn clicked then push the text from input to the array
         function addExpense() {
-            const inputedExpense = document.getElementById("expense-input").value;
+            const expenseName = document.getElementById("expense-name").value;
+            const expenseAmount = document.getElementById("expense-amount").value;
+
+            const newExpense = {
+                name: expenseName,
+                amount: expenseAmount
+            };
             expenses.push(inputedExpense);
             renderExpenses();
         }
