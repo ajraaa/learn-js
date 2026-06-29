@@ -24,9 +24,14 @@
             expenseList.innerHTML = '';
             for (let i = 0; i < expenses.length; i++) {
                 const li = document.createElement('li');
+                const btnDelete = document.createElement('button');
+                btnDelete.textContent = 'Delete';
+                btnDelete.setAttribute('onclick', 'deleteExpense()');
+                btnDelete.setAttribute('style', 'margin-left: 5px');
                 li.dataset.id = i;
                 li.textContent = `${expenses[i].name} Rp.${expenses[i].amount}`;
                 expenseList.appendChild(li);
+                li.appendChild(btnDelete);
             }
         }
 
@@ -40,14 +45,22 @@
                 amount: expenseAmount
             };
             expenses.push(newExpense);
-            console.log(expenses);
             renderExpenses();
         }
 
         function deleteExpense() {
+            console.log('true');
             // get selected expense
-            // delete selected expense from array
-            //call renderExpense()
+            expenseList.addEventListener('click', (event) => {
+                if (event.target.tagName === 'BUTTON') {
+                    const dataId = event.target.closest('li').dataset.id;
+                    console.log(dataId);
+                    // delete selected expense from array
+                    expenses.splice(dataId, 1);
+                    //call renderExpense()
+                    renderExpenses();
+                }
+            });
         }
     </script>
 </body>
