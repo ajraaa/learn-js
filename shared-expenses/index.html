@@ -26,7 +26,6 @@
                 const li = document.createElement('li');
                 const btnDelete = document.createElement('button');
                 btnDelete.textContent = 'Delete';
-                btnDelete.setAttribute('onclick', 'deleteExpense()');
                 btnDelete.setAttribute('style', 'margin-left: 5px');
                 li.dataset.id = i;
                 li.textContent = `${expenses[i].name} Rp.${expenses[i].amount}`;
@@ -48,20 +47,16 @@
             renderExpenses();
         }
 
-        function deleteExpense() {
-            console.log('true');
-            // get selected expense
-            expenseList.addEventListener('click', (event) => {
-                if (event.target.tagName === 'BUTTON') {
-                    const dataId = event.target.closest('li').dataset.id;
-                    console.log(dataId);
-                    // delete selected expense from array
-                    expenses.splice(dataId, 1);
-                    //call renderExpense()
-                    renderExpenses();
-                }
-            });
-        }
+        // get selected expense
+        expenseList.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                const dataId = event.target.closest('li').dataset.id;
+                // delete selected expense from array
+                expenses.splice(dataId, 1);
+                //call renderExpense()
+                renderExpenses();
+            }
+        });
     </script>
 </body>
 
