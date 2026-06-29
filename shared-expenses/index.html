@@ -11,7 +11,7 @@
     <form>
         <input type="text" placeholder="Expense Name" id="expense-name">
         <input type="number" placeholder="Amount" id="expense-amount">
-        <button type="button" onclick="addExpense()">Submit</button>
+        <button type="button" id="btn-submit">Submit</button>
     </form>
 
     <ul id="expense-list"></ul>
@@ -19,33 +19,42 @@
     <script>
         let expenses = [];
         const expenseList = document.getElementById("expense-list");
+        const btnSubmit = document.getElementById("btn-submit");
+        const expenseName = document.getElementById("expense-name");
+        const expenseAmount = document.getElementById("expense-amount");
 
         function renderExpenses() {
             expenseList.innerHTML = '';
             for (let i = 0; i < expenses.length; i++) {
                 const li = document.createElement('li');
                 const btnDelete = document.createElement('button');
+
                 btnDelete.textContent = 'Delete';
-                btnDelete.setAttribute('style', 'margin-left: 5px');
+                btnDelete.id = 'btn-delete';
+                btnDelete.style.marginLeft = '5px';
+
                 li.dataset.id = i;
                 li.textContent = `${expenses[i].name} Rp.${expenses[i].amount}`;
-                expenseList.appendChild(li);
+
                 li.appendChild(btnDelete);
+                expenseList.appendChild(li);
             }
         }
 
         // submit btn clicked then push the text from input to the array
-        function addExpense() {
-            const expenseName = document.getElementById("expense-name").value;
-            const expenseAmount = document.getElementById("expense-amount").value;
+        btnSubmit.addEventListener('click', (e) => {
+            if (!expenseName.value || !expenseAmount.value) return;
 
             const newExpense = {
-                name: expenseName,
-                amount: expenseAmount
+                name: expenseName.value,
+                amount: expenseAmount.value
             };
             expenses.push(newExpense);
             renderExpenses();
-        }
+
+            expenseName.value = '';
+            expenseAmount.value = '';
+        });
 
         // get selected expense
         expenseList.addEventListener('click', (event) => {
