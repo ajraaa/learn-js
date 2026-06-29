@@ -25,7 +25,7 @@
 
         function renderExpenses() {
             expenseList.innerHTML = '';
-            for (let i = 0; i < expenses.length; i++) {
+            expenses.forEach((expense) => {
                 const li = document.createElement('li');
                 const btnDelete = document.createElement('button');
 
@@ -33,12 +33,12 @@
                 btnDelete.id = 'btn-delete';
                 btnDelete.style.marginLeft = '5px';
 
-                li.dataset.id = i;
-                li.textContent = `${expenses[i].name} Rp.${expenses[i].amount}`;
+                li.dataset.id = expense.id;
+                li.textContent = `${expense.name} Rp.${expense.amount}`;
 
                 li.appendChild(btnDelete);
                 expenseList.appendChild(li);
-            }
+            });
         }
 
         // submit btn clicked then push the text from input to the array
@@ -46,8 +46,9 @@
             if (!expenseName.value || !expenseAmount.value) return;
 
             const newExpense = {
+                id: Date.now(),
                 name: expenseName.value,
-                amount: expenseAmount.value
+                amount: Number(expenseAmount.value)
             };
             expenses.push(newExpense);
             renderExpenses();
@@ -58,10 +59,10 @@
 
         // get selected expense
         expenseList.addEventListener('click', (event) => {
-            if (event.target.tagName === 'BUTTON') {
-                const dataId = event.target.closest('li').dataset.id;
+            if (event.target.id.includes('btn-delete')) {
+                const dataId = Number(event.target.closest('li').dataset.id);
                 // delete selected expense from array
-                expenses.splice(dataId, 1);
+                expenses = expenses.filter(expense => expense.id !== dataId);
                 //call renderExpense()
                 renderExpenses();
             }
