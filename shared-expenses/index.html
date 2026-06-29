@@ -22,11 +22,12 @@
 
         function renderExpenses() {
             expenseList.innerHTML = '';
-            expenses.forEach(item => {
+            for (let i = 0; i < expenses.length; i++) {
                 const li = document.createElement('li');
-                li.textContent = `${item.name} ${item.amount}`;
+                li.dataset.id = i;
+                li.textContent = `${expenses[i].name} Rp.${expenses[i].amount}`;
                 expenseList.appendChild(li);
-            });
+            }
         }
 
         // submit btn clicked then push the text from input to the array
@@ -39,7 +40,14 @@
                 amount: expenseAmount
             };
             expenses.push(newExpense);
+            console.log(expenses);
             renderExpenses();
+        }
+
+        function deleteExpense() {
+            // get selected expense
+            // delete selected expense from array
+            //call renderExpense()
         }
     </script>
 </body>
